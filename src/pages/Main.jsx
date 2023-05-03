@@ -1,11 +1,12 @@
 import React from "react";
+import Layout from "../components/Layout";
 import Button from "../ele/Button";
 
 function Main() {
   return (
-    <div>
+    <Layout>
       <Button>로그아웃</Button>
-    </div>
+    </Layout>
   );
 }
 

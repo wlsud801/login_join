@@ -16,11 +16,14 @@ function Login() {
   const tokenReceived = useSelector((state) => {
     console.log(state);
   });
+
   const [input, setInput] = useState({ id: "", password: "" });
 
   const mutation = useMutation(login, {
     onSuccess: (response) => {
       dispatch(token(response.token));
+      // 토큰이 발급되면 쿠키에 저장
+      document.cookie = response.token;
       navigate("/Main");
     },
     onError: (error) => {
