@@ -2,18 +2,29 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useMutation } from "react-query";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Layout from "../components/Layout";
 import Button from "../ele/Button";
 import Input from "../ele/Input";
 import { login } from "../api/members";
+import { token } from "../modules/token";
 
 function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const tokenReceived = useSelector((state) => {
+    console.log(state);
+  });
   const [input, setInput] = useState({ id: "", password: "" });
+
   const mutation = useMutation(login, {
     onSuccess: (response) => {
-      console.log(response);
+      dispatch(token(response.token));
+      navigate("/Main");
+    },
+    onError: (error) => {
+      alert(error);
     },
   });
 
@@ -26,8 +37,12 @@ function Login() {
 
   // 로그인 버튼 이벤트 핸들러 함수
   const loginButtonHandler = (event) => {
-    event.preventDefault();
-    mutation.mutate(input);
+    if (input.id !== "" && input.password !== "") {
+      event.preventDefault();
+      mutation.mutate(input);
+    } else {
+      alert("ID와 PASSWORD를 모두 입력하셔야 합니다!");
+    }
   };
 
   return (

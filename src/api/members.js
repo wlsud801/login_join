@@ -9,17 +9,20 @@ const login = async (userIdPw) => {
     );
     return response.data;
   } catch (error) {
-    console.error(error);
+    return Promise.reject(error.response.data.message);
   }
 };
 // 회원가입 : 회원정보 추가
 const addMembers = async (newMember) => {
-    try{
-        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}register`, newMember);
-        return response.data;
-    } catch(error) {
-        alert(error);
-    }
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_SERVER_URL}register`,
+      newMember
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 
