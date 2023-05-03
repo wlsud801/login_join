@@ -12,8 +12,8 @@ function Login() {
   const navigate = useNavigate();
   const [input, setInput] = useState({ id: "", password: "" });
   const mutation = useMutation(login, {
-    onSuccess: () => {
-      console.log(mutation);
+    onSuccess: (response) => {
+      console.log(response);
     },
   });
 

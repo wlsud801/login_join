@@ -15,12 +15,12 @@ const login = async (userIdPw) => {
 // 회원가입 : 회원정보 추가
 const addMembers = async (newMember) => {
     try{
-        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/register`, newMember);
+        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}register`, newMember);
         return response.data;
     } catch(error) {
-        console.error(error);
+        alert(error);
     }
-    
 };
 
-export { login, addMembers };
+
+export { login, addMembers};

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { addMembers } from '../api/members';
+import { addMembers, getMembers } from '../api/members';
 import Flx from '../components/Flx';
 import Layout from '../components/Layout'
 import Button from '../ele/Button';
@@ -18,10 +18,16 @@ function Join() {
         console.log(memberInfo)
         setMemberInfo({...memberInfo, [e.target.name] : e.target.value})
     }
-    
+    // 회원정보 가져오기
+    // const {isLoading, isError, data} = useQuery("members", getMembers);
+    // console.log(data)
+
     const mutation = useMutation(addMembers,{
         onSuccess: () => {
             console.log('성공')
+        },
+        onError: (error) => {
+            alert(error);
         }
     });
 
@@ -32,15 +38,15 @@ function Join() {
             password:memberInfo.pw
         }
 
-        
-
         if(memberInfo.id.length > 5 || memberInfo.pw.length > 10 || memberInfo.pw !== memberInfo.pwf){
             alert('입력값 조건을 충족해야합니다.')
 
-        } else {
+        } else if(addMembers.data){
+            
+        }else {
             mutation.mutate(body);
             alert('회원가입이 완료되었습니다.')
-            navigate('/');
+            // navigate('/');
         }
     }
     
