@@ -37,8 +37,6 @@ function Join() {
         if(memberInfo.id.length > 5 || memberInfo.pw.length > 10 || memberInfo.pw !== memberInfo.pwf){
             alert('입력값 조건을 충족해야합니다.')
 
-        } else if(){
-
         } else {
             mutation.mutate(body);
             alert('회원가입이 완료되었습니다.')
