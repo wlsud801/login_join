@@ -25,4 +25,17 @@ const addMembers = async (newMember) => {
   }
 };
 
-export { login, addMembers };
+// 유저 인증 확인
+const confirm = async (authorization) => {
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}user`,
+      { headers: { authorization: `Bearer ${authorization}` } }
+    );
+    return response.data;
+  } catch (error) {
+    return Promise.reject(error.response.data.message);
+  }
+};
+
+export { login, addMembers, confirm };

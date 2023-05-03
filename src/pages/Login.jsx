@@ -14,13 +14,15 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const tokenReceived = useSelector((state) => {
-    console.log(state);
+    // console.log(state);
   });
   const [input, setInput] = useState({ id: "", password: "" });
 
   const mutation = useMutation(login, {
     onSuccess: (response) => {
       dispatch(token(response.token));
+      // document.cookie = `token=${response.token};`;
+      localStorage.setItem("access_token", response.token);
       navigate("/Main");
     },
     onError: (error) => {
