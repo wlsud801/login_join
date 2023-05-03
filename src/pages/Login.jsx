@@ -14,9 +14,9 @@ function Login() {
         <h1>Login</h1>
         <StForm>
             <label htmlFor='ID'>ID</label>
-            <Input type="text"/>
-            <label htmlFor='ID'>PW</label>
-            <Input type="password"/>
+            <Input name='ID' type="text"/>
+            <label htmlFor='PW'>PW</label>
+            <Input name='PW' type="password"/>
             <div className='btnwrap'>
                 <Button type="submit">로그인</Button>
                 <Button className="white" onClick={() => {navigate('/Join')}}>회원가입</Button>

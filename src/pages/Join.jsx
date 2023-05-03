@@ -16,11 +16,11 @@ function Join() {
         </Flx>
         <StForm>
             <label htmlFor='ID'>ID</label>
-            <Input type="text" placeholder="5자 이내로 입력하세요"/>
-            <label htmlFor='ID'>PW</label>
-            <Input type="password" placeholder="5자 이내로 입력하세요"/>
-            <label htmlFor='ID'>PW 확인하기</label>
-            <Input type="password"  placeholder="비밀번호 확인을 위해 한번 더 입력해주세요"/>
+            <Input type="text" name='ID' placeholder="5자 이내로 입력하세요"/>
+            <label htmlFor='PW'>PW</label>
+            <Input type="password" name='PW' placeholder="5자 이내로 입력하세요"/>
+            <label htmlFor='PWF'>PW 확인하기</label>
+            <Input type="password" name='PWF' placeholder="비밀번호 확인을 위해 한번 더 입력해주세요"/>
             <div className='btnwrap'>
                 <Button type="submit">회원가입하기</Button>
             </div>
