@@ -10,7 +10,6 @@ function Main() {
     if (!localStorage.getItem("access_token")) {
       navigate("/");
     }
-
     confirm(localStorage.getItem("access_token"));
   }, []);
   const logoutHandler = () => {

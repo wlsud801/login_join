@@ -42,9 +42,40 @@ function Join() {
       alert("회원가입이 완료되었습니다.");
       navigate("/");
     }
-  };
+    // 회원정보 가져오기
+    // const {isLoading, isError, data} = useQuery("members", getMembers);
+    // console.log(data)
 
-  return (
+    const mutation = useMutation(addMembers,{
+        onSuccess: () => {
+            console.log('성공')
+        },
+        onError: (error) => {
+            alert(error);
+        }
+    });
+
+    // 회원가입 버튼 눌렀을 때 입력값 확인,중복값 있으면 실패, 성공시 mutate
+    const submitJoinHandler = () => {
+        let body = {
+            id:memberInfo.id,
+            password:memberInfo.pw
+        }
+
+        if(memberInfo.id.length > 5 || memberInfo.pw.length > 10 || memberInfo.pw !== memberInfo.pwf){
+            alert('입력값 조건을 충족해야합니다.')
+
+        } else if(addMembers.data){
+            
+        }else {
+            mutation.mutate(body);
+            alert('회원가입이 완료되었습니다.')
+            // navigate('/');
+        }
+    }
+    
+
+    return (
     <Layout>
       <Flx>
         <h1>Jogin</h1>
