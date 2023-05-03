@@ -18,27 +18,27 @@ function Join() {
         console.log(memberInfo)
         setMemberInfo({...memberInfo, [e.target.name] : e.target.value})
     }
-    // 리액트 쿼리 불러오기
-    const queryClient = useQueryClient();
-
-    // 쿼리 저장소 불러오기
-    const {isLoading, isError, data} = useQuery("members", addMembers);
-
+    
     const mutation = useMutation(addMembers,{
         onSuccess: () => {
-            queryClient.invalidateQueries('members');
             console.log('성공')
         }
     });
 
+    // 회원가입 버튼 눌렀을 때 입력값 확인,중복값 있으면 실패, 성공시 mutate
     const submitJoinHandler = () => {
         let body = {
             id:memberInfo.id,
             password:memberInfo.pw
         }
+
         
+
         if(memberInfo.id.length > 5 || memberInfo.pw.length > 10 || memberInfo.pw !== memberInfo.pwf){
-            alert('입력값을 확인해주세요')
+            alert('입력값 조건을 충족해야합니다.')
+
+        } else if(){
+
         } else {
             mutation.mutate(body);
             alert('회원가입이 완료되었습니다.')
@@ -53,7 +53,7 @@ function Join() {
             <h1>Jogin</h1>
             <Button className='move' onClick={() => {navigate('/')}}>뒤로가기</Button>
         </Flx>
-        <StForm onSubmit={submitJoinHandler}>
+        <StForm>
             <label htmlFor='id'>ID</label>
             {
                 memberInfo.id.length > 5 ?
@@ -79,7 +79,7 @@ function Join() {
             }
             <Input type="password" name='pwf' value={memberInfo.pwf} onChange={inputAddHandler} placeholder="비밀번호 확인을 위해 한번 더 입력해주세요" />
             <div className='btnwrap'>
-                <Button type="submit">회원가입하기</Button>
+                <Button type="submit" onClick={() => submitJoinHandler()}>회원가입하기</Button>
             </div>
         </StForm>
     </Layout>
