@@ -14,7 +14,7 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const tokenReceived = useSelector((state) => {
-    console.log(state);
+    // console.log(state);
   });
 
   const [input, setInput] = useState({ id: "", password: "" });
@@ -22,8 +22,8 @@ function Login() {
   const mutation = useMutation(login, {
     onSuccess: (response) => {
       dispatch(token(response.token));
-      // 토큰이 발급되면 쿠키에 저장
-      document.cookie = response.token;
+      // document.cookie = `token=${response.token};`;
+      localStorage.setItem("access_token", response.token);
       navigate("/Main");
     },
     onError: (error) => {
