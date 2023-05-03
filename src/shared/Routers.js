@@ -13,22 +13,9 @@ const Routers = () => {
     <BrowserRouter>
       <GlobalStyle />
       <Routes>
-        <Route path='/' element={
-          // 로그인 된 상태일 땐 로그인 페이지. 회원가입 페이지 접속 불가
-          <PublicRouter>
-            <Login />
-          </PublicRouter>
-        }></Route>
-        <Route path='/Join' element={
-          <PublicRouter>
-            <Join />
-          </PublicRouter>
-        }></Route>
-        <Route path='/Main' element={
-          <PrivateRouter>
-            <Main />
-          </PrivateRouter>
-        }></Route>
+        <Route path='/' element={<Login />}></Route>
+        <Route path='/Join' element={<Join />}></Route>
+        <Route path='/Main' element={<Main />}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -24,6 +24,7 @@ function Login() {
       dispatch(token(response.token));
       // document.cookie = `token=${response.token};`;
       localStorage.setItem("access_token", response.token);
+      console.log('성공')
       navigate("/Main");
     },
     onError: (error) => {
