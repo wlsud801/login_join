@@ -4,6 +4,9 @@ import GlobalStyle from "../GobalStyles";
 import Join from "../pages/Join";
 import Login from "../pages/Login";
 import Main from "../pages/Main";
+import PrivateRouter from "./PrivateRouter";
+import PublicRouter from "./PublicRouter";
+// import PrivateRouter from "./PrivateRouter";
 
 const Routers = () => {
   return (

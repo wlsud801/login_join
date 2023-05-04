@@ -12,6 +12,7 @@ const login = async (userIdPw) => {
     return Promise.reject(error.response.data.message);
   }
 };
+
 // 회원가입 : 회원정보 추가
 const addMembers = async (newMember) => {
   try {
@@ -21,7 +22,7 @@ const addMembers = async (newMember) => {
     );
     return response.data;
   } catch (error) {
-    console.error(error);
+    return Promise.reject(error.response.data.message);
   }
 };
 

@@ -27,6 +27,7 @@ function Login() {
     onSuccess: (response) => {
       dispatch(token(response.token));
       localStorage.setItem("access_token", response.token);
+      console.log("성공");
       navigate("/Main");
     },
     // 실패시
