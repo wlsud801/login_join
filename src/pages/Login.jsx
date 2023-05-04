@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation } from "react-query";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import Layout from "../components/Layout";
 import Button from "../ele/Button";
@@ -13,18 +13,23 @@ import { token } from "../modules/token";
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const tokenReceived = useSelector((state) => {
-    // console.log(state);
-  });
+
+  useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      navigate("/Main");
+    }
+  }, []);
+
   const [input, setInput] = useState({ id: "", password: "" });
 
   const mutation = useMutation(login, {
+    // 성공시
     onSuccess: (response) => {
       dispatch(token(response.token));
-      // document.cookie = `token=${response.token};`;
       localStorage.setItem("access_token", response.token);
       navigate("/Main");
     },
+    // 실패시
     onError: (error) => {
       alert(error);
     },

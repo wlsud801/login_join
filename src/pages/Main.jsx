@@ -7,6 +7,7 @@ function Main() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // 토큰 없이 url로 진입시 로그인화면으로
     if (!localStorage.getItem("access_token")) {
       navigate("/");
     }
