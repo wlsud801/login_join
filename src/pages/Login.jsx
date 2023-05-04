@@ -9,6 +9,7 @@ import Button from "../ele/Button";
 import Input from "../ele/Input";
 import { login } from "../api/members";
 import { token } from "../modules/token";
+import { confirm } from "../api/members";
 
 function Login() {
   const navigate = useNavigate();
@@ -16,9 +17,14 @@ function Login() {
 
   // 토큰이 있으면 로그인 페이지에 머물지 못 함
   useEffect(() => {
-    if (localStorage.getItem("access_token")) {
-      navigate("/Main");
-    }
+    (async () => {
+      try {
+        const result = await confirm(localStorage.getItem("access_token"));
+        result.status === 200 && navigate("/Main");
+      } catch (error) {
+        console.log(localStorage.getItem("access_token"));
+      }
+    })();
   }, []);
 
   // 인풋 값들 상태 관리

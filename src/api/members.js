@@ -33,7 +33,7 @@ const confirm = async (authorization) => {
       `${process.env.REACT_APP_SERVER_URL}user`,
       {
         headers: {
-          authorization: `asdf`,
+          authorization: `Bearer ${authorization}`,
         },
       }
     );
