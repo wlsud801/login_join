@@ -31,11 +31,15 @@ const confirm = async (authorization) => {
   try {
     const response = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}user`,
-      { headers: { authorization: `Bearer ${authorization}` } }
+      {
+        headers: {
+          authorization: `asdf`,
+        },
+      }
     );
-    return response.data;
+    return response;
   } catch (error) {
-    return Promise.reject(error.response.data.message);
+    return Promise.reject(error.response);
   }
 };
 

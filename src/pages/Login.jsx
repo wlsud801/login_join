@@ -14,12 +14,14 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // 토큰이 있으면 로그인 페이지에 머물지 못 함
   useEffect(() => {
     if (localStorage.getItem("access_token")) {
       navigate("/Main");
     }
   }, []);
 
+  // 인풋 값들 상태 관리
   const [input, setInput] = useState({ id: "", password: "" });
 
   const mutation = useMutation(login, {
@@ -49,6 +51,7 @@ function Login() {
       event.preventDefault();
       mutation.mutate(input);
     } else {
+      // ID나 PASSWORD를 하나라도 비워둔 상태로 로그인을 시도한 경우
       alert("ID와 PASSWORD를 모두 입력하셔야 합니다!");
     }
   };
