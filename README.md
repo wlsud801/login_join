@@ -1,6 +1,6 @@
 # Practice - Join & Login
 
-React, axios, JWTtoken을 이용하여 로그인, 회원가입을 구현해보았습니다.
+React, axios, JWTtoken 등 을 이용하여 로그인, 회원가입을 구현해보았습니다.
 
 - 로그인, 회원가입 페이지를 각각 구현합니다.
 - 아이디와 비밀번호가 모두 입력되지 않으면, API 요청을 보내지 않도록 합니다.
